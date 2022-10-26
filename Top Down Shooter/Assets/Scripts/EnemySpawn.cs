@@ -32,7 +32,7 @@ public class EnemySpawn : MonoBehaviour
         for(int i = 0; i < enemiesPerWave; i++) 
         {
             Debug.Log("Spawning enemy!");
-            Instantiate(enemyPrefab);
+            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(3);
         }
     }
