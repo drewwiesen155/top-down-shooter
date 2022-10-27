@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform Enemies;
     public int enemiesPerWave = 1;
-    private int wave;
+    public int wave;
     private bool waveOver;
+
+    public Text waveCounter; //Need this here to access wave
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +65,14 @@ public class EnemySpawn : MonoBehaviour
             Debug.Log("Wave " + wave + " is over!");
             wave++;
             Debug.Log("Starting Wave " + wave);
+            
+            //Since this script is on each spawner, only one will have a reference to the UI to update the wave counter
+            if(waveCounter != null) 
+            {
+                waveCounter.text = ("Wave " + wave);
+            }
+            
+
             return true;
         }
     }
