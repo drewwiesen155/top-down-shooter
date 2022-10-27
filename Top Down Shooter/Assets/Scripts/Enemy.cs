@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public AudioSource hitSound;
+    public AudioSource deathSound;
 
     public int maxHp = 3;
     private int currentHp;
@@ -30,7 +32,7 @@ public class Enemy : MonoBehaviour
             isDead = DealDamage();
             if (isDead)
             {
-                Destroy(gameObject);
+                Destroy(gameObject, .15f); //wait to allow sound to play
             }
         }
     }
@@ -42,10 +44,13 @@ public class Enemy : MonoBehaviour
 
         if (currentHp <= 0)
         {
+            //deathSound.Play();    eventually
+            hitSound.Play();
             return true;
         }
         else
         {
+            hitSound.Play();
             return false;
         }
     }

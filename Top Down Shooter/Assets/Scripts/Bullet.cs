@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject.tag != "Player")
         //gameObject effect = Instatiate(hitEffect, transform.position, Quaternion.identity);
         //Destroy(effect, 5f);
         Destroy(gameObject);
