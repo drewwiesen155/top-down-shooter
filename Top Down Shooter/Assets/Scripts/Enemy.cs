@@ -25,9 +25,9 @@ public class Enemy : MonoBehaviour
     }
 
     //Checking if enemy has been hit with a bullet
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collider.gameObject.tag == "Bullet")
         {
             isDead = DealDamage();
             if (isDead)

@@ -45,7 +45,11 @@ public class Player : MonoBehaviour
 
         if (currentHp <= 0)
         {
-            deathSound.Play();
+            if (!isDead)
+            {
+                deathSound.Play();
+            }
+            
             return true;            
         }
         else

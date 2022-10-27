@@ -6,9 +6,9 @@ public class Bullet : MonoBehaviour
 {
     public GameObject hitEffect;    //To be used later for animation
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.tag != "Player")
+        if(collider.gameObject.tag != "Player")
         //gameObject effect = Instatiate(hitEffect, transform.position, Quaternion.identity);
         //Destroy(effect, 5f);
         Destroy(gameObject);
