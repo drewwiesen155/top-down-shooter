@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
+    public Transform firePoint;
     public GameObject bulletPrefab;
-    public float bulletSpeed = 10f;
+    public float bulletSpeed = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,8 @@ public class Shoot : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             //Fire Bullet
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeed, bulletSpeed));
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * bulletSpeed, ForceMode2D.Impulse);
         }
     }
 }

@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy : MonoBehaviour
+{
+
+    public int maxHp = 3;
+    private int currentHp;
+    bool isDead = false;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        currentHp = maxHp;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    //Checking if enemy has been hit with a bullet
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            isDead = DealDamage();
+            if (isDead)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    //Deals damage to enemy. Returns true if enemy dies.
+    private bool DealDamage()
+    {
+        currentHp--;
+
+        if (currentHp <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
