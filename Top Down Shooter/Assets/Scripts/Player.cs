@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour
 
     public int maxHp = 5;
     private int currentHp;
-    bool isDead = false;
+    public bool isDead = false;     //public so movement can be turned off in PlayerMovement script
 
     //IFrame Stuff
     public float InvulSeconds = 1.0f; //time of invulnrability.
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour
                 //Destroy(gameObject, .75f);
                 rb.bodyType = RigidbodyType2D.Static;   //Eliminates movement Doesnt work rn
                 hitbox.enabled = false;
+                StartCoroutine(ToEndScreen());
             }
         }
     }
@@ -110,7 +112,13 @@ public class Player : MonoBehaviour
             Debug.Log("No Damamge! Payer Invulnrable!");
             return false;
         }
+    }
 
-        
+    IEnumerator ToEndScreen()
+    {
+        yield return new WaitForSeconds(2);
+
+        Debug.Log("Loading Game Over Screen");
+        SceneManager.LoadScene("Game Over");
     }
 }
