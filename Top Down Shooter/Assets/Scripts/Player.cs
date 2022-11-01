@@ -20,12 +20,15 @@ public class Player : MonoBehaviour
     bool invul = false;
     public BoxCollider2D hitbox;
     bool srOff = false;
-    
+
+    //UI
+    public HealthBar hpBar;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHp = maxHp;
+        hpBar.SetMaxHealth(maxHp);
     }
 
     // Update is called once per frame
@@ -85,6 +88,7 @@ public class Player : MonoBehaviour
         {
             currentHp--;
             Debug.Log("Player Hit! HP = " + currentHp);
+            hpBar.SetHealth(currentHp);
 
             if (currentHp <= 0)
             {
