@@ -5,14 +5,20 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-
+    [Header("Enemy Prefabs")]
     public GameObject oozePrefab;
     public GameObject wormPrefab;
+
+    [Header("Wave Data")]
     public Transform enemies;
     public int wave;
     private bool waveOver;
 
+    [Header("UI")]
     public Text waveCounter; //Need this here to access wave
+
+    [Header("Bullet Management")]
+    //TODO
 
     EnemySpawn[] spawnPoints;
 
@@ -32,10 +38,13 @@ public class WaveManager : MonoBehaviour
         {
             waveOver = false;
             for(int i = 0; i < spawnPoints.Length; i++)
-            {
+            {   
+                //TODO: Implement multiple enemies and varying them in waves;
                 if(wave % 2 == 1)
                 {
-                    StartCoroutine(spawnPoints[i].SpawnEnemies(wave, wormPrefab));
+
+                    //StartCoroutine(spawnPoints[i].SpawnEnemies(wave, wormPrefab));
+                    StartCoroutine(spawnPoints[i].SpawnEnemies(wave, oozePrefab));  //Placeholder
                 }
                 else
                 {
