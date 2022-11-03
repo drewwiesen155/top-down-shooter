@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 4
 --- !u!61 &1815119701253077262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSound: {fileID: 3545054432781245950}
   deathSound: {fileID: 5630394007257947368}
-  maxHp: 5
+  maxHp: 3
 --- !u!82 &3545054432781245950
 AudioSource:
   m_ObjectHideFlags: 0

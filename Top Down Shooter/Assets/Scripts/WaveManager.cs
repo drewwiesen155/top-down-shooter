@@ -40,11 +40,11 @@ public class WaveManager : MonoBehaviour
             for(int i = 0; i < spawnPoints.Length; i++)
             {   
                 //TODO: Implement multiple enemies and varying them in waves;
-                if(wave % 2 == 1)
+                if(wave % 5 == 0)
                 {
 
-                    //StartCoroutine(spawnPoints[i].SpawnEnemies(wave, wormPrefab));
-                    StartCoroutine(spawnPoints[i].SpawnEnemies(wave, oozePrefab));  //Placeholder
+                    StartCoroutine(spawnPoints[i].SpawnEnemies(wave/5, wormPrefab));    //Every 5 Waves there is a worm wave. Starts at 10 worms then incrememnts up
+                    //StartCoroutine(spawnPoints[i].SpawnEnemies(wave, oozePrefab));  //Placeholder
                 }
                 else
                 {
