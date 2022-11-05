@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3275579863789157804}
   - component: {fileID: 3275579863789157810}
-  - component: {fileID: 3275579863789157805}
   - component: {fileID: 1815119701253077262}
   - component: {fileID: 1653797808521950598}
+  - component: {fileID: 3275579863789157805}
   - component: {fileID: 79827271191521545}
   - component: {fileID: 3545054432781245950}
   - component: {fileID: 5630394007257947368}
@@ -90,20 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3275579863789157805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275579863789157807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa8cd14c6e1a9934ebf662e2a0718d0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  moveSpeed: 2.5
 --- !u!61 &1815119701253077262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -151,6 +137,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3275579863789157805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275579863789157807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8cd14c6e1a9934ebf662e2a0718d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  moveSpeed: 2.5
 --- !u!114 &79827271191521545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   hitSound: {fileID: 3545054432781245950}
   deathSound: {fileID: 5630394007257947368}
   maxHp: 3
+  damagedSprite: {fileID: 0}
 --- !u!82 &3545054432781245950
 AudioSource:
   m_ObjectHideFlags: 0
