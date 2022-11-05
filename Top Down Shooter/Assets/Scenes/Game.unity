@@ -13027,6 +13027,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oozePrefab: {fileID: 3275579863789157807, guid: 88976266c440b7446a5166c63adb9c1d, type: 3}
   wormPrefab: {fileID: 3275579863789157807, guid: 01bbb66642a06124f8f4d86423251875, type: 3}
+  tankOozePrefab: {fileID: 3275579863789157807, guid: 86c782aa68f0467488662f515ed42c8b, type: 3}
+  tankOozeSpawnChance: 0.07
+  tankOozeFirstWave: 3
   enemies: {fileID: 146954785}
   wave: 1
   waveCounter: {fileID: 391356201}
