@@ -8,27 +8,32 @@ public class EnemyMovement : MonoBehaviour
     public float moveSpeed = 1f;
 
     private bool facingLeft = true;
+    private Enemy enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        enemy = gameObject.GetComponent<Enemy>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        if(!enemy.isDead)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
 
-        //flip sprite if facing the wrong way
-        Vector2 dir = player.position - transform.position;
+            //flip sprite if facing the wrong way
+            Vector2 dir = player.position - transform.position;
 
-        //sprites face left. Left should be negative X so positive X needs flipped sprite;
-        if (dir.x > 0 && facingLeft)
-            Flip();
-        else if (dir.x < 0 && !facingLeft)
-            Flip();
+            //sprites face left. Left should be negative X so positive X needs flipped sprite;
+            if (dir.x > 0 && facingLeft)
+                Flip();
+            else if (dir.x < 0 && !facingLeft)
+                Flip();
+        }
     }
 
     //Flips the sprite 180 degrees

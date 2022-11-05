@@ -39,7 +39,7 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        wave = 1;
+        wave = 5;
         waveOver = true;
 
         spawnPoints = gameObject.GetComponentsInChildren<EnemySpawn>();

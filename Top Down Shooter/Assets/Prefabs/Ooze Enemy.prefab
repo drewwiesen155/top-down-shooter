@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3275579863789157804}
   - component: {fileID: 3275579863789157810}
+  - component: {fileID: 5041429301310177140}
   - component: {fileID: 1815119701253077262}
   - component: {fileID: 1653797808521950598}
   - component: {fileID: 3275579863789157805}
@@ -90,6 +91,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5041429301310177140
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275579863789157807}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2725c141adfc9d44aa9c75e3d2b0fa9e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &1815119701253077262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,8 +186,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSound: {fileID: 3545054432781245950}
   deathSound: {fileID: 5630394007257947368}
+  hitbox: {fileID: 1815119701253077262}
   maxHp: 3
   damagedSprite: {fileID: 0}
+  anim: {fileID: 5041429301310177140}
 --- !u!82 &3545054432781245950
 AudioSource:
   m_ObjectHideFlags: 0

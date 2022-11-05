@@ -6,17 +6,19 @@ public class Enemy : MonoBehaviour
 {
     public AudioSource hitSound;
     public AudioSource deathSound;
+    public BoxCollider2D hitbox;
 
 
     [Header("Enemy Stats")]
     public int maxHp = 3;
     private int currentHp;
-    bool isDead = false;
+    [HideInInspector]
+    public bool isDead = false;
 
     [Header("Enemy visuals")]
     private SpriteRenderer sr;
     public Sprite damagedSprite;
-    //public bool hasDamagedSprite;
+    public Animator anim;
 
 
     // Start is called before the first frame update
@@ -38,10 +40,6 @@ public class Enemy : MonoBehaviour
         if (collider.gameObject.tag == "Bullet")
         {
             isDead = DealDamage();
-            if (isDead)
-            {
-                Destroy(gameObject, .15f); //wait to allow sound to play
-            }
         }
     }
 
@@ -53,7 +51,7 @@ public class Enemy : MonoBehaviour
         if (currentHp <= 0)
         {
             //deathSound.Play();    eventually
-            hitSound.Play();
+            Die();
             return true;
 
            
@@ -70,5 +68,14 @@ public class Enemy : MonoBehaviour
             hitSound.Play();
             return false;
         }
+    }
+
+    private void Die()
+    {
+        hitSound.Play();
+        hitbox.enabled = false;
+        anim.SetBool("isDead", true);
+        Destroy(gameObject, .75f); //wait to allow sound to play
+
     }
 }
