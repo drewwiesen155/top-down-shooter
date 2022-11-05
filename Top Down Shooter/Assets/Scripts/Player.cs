@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     public AudioSource damagedSound;
     public Rigidbody2D rb;
     public SpriteRenderer sr;
+    
 
     public int maxHp = 5;
     private int currentHp;
@@ -22,13 +24,23 @@ public class Player : MonoBehaviour
     bool srOff = false;
 
     //UI
+    [Header("UI")]
     public HealthBar hpBar;
+    public GameObject gameOverScreen;
+    public Text wavesSurvivedText;
+
+    [Header("Misc")]
+    public WaveManager waveManager;
+    public AudioSource bgMusic;
+    public AudioSource deathMusic;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHp = maxHp;
         hpBar.SetMaxHealth(maxHp);
+        gameOverScreen.SetActive(false);
+        deathMusic.Stop();
     }
 
     // Update is called once per frame
@@ -95,6 +107,8 @@ public class Player : MonoBehaviour
                 if (!isDead)
                 {
                     deathSound.Play();
+                    
+                    
                 }
 
                 return true;
@@ -122,7 +136,16 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        Debug.Log("Loading Game Over Screen");
-        SceneManager.LoadScene("Game Over");
+        gameOverScreen.SetActive(true);
+        int wavesSurvived = waveManager.wave - 1;
+
+        //Grammer corner case... always annoys me
+        if(wavesSurvived == 1)
+            wavesSurvivedText.text = ("You Survived 1 Wave.");
+        else
+            wavesSurvivedText.text = ("You Survived " + wavesSurvived + " Waves.");
+
+        bgMusic.Stop();
+        deathMusic.Play();
     }
 }

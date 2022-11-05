@@ -12,17 +12,20 @@ public class Shoot : MonoBehaviour
     private float fireRate = .25f;
     private float fireTimer = 0f;
 
+    private Player p;
+
     // Start is called before the first frame update
     void Start()
     {
         fireTimer = 0f;
+        p = gameObject.GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Input system is kinda weird. This will detect mouse left clicks
-        if (Input.GetButton("Fire1") && fireTimer >= fireRate)
+        if (Input.GetButton("Fire1") && fireTimer >= fireRate && !p.isDead)
         {
             //Fire Bullet
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);

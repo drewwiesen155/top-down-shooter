@@ -7,15 +7,23 @@ public class Enemy : MonoBehaviour
     public AudioSource hitSound;
     public AudioSource deathSound;
 
+
+    [Header("Enemy Stats")]
     public int maxHp = 3;
     private int currentHp;
     bool isDead = false;
+
+    [Header("Enemy visuals")]
+    private SpriteRenderer sr;
+    public Sprite damagedSprite;
+    //public bool hasDamagedSprite;
 
 
     // Start is called before the first frame update
     void Start()
     {
         currentHp = maxHp;
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -47,9 +55,18 @@ public class Enemy : MonoBehaviour
             //deathSound.Play();    eventually
             hitSound.Play();
             return true;
+
+           
         }
         else
         {
+
+            if (currentHp <= (maxHp / 2) && damagedSprite != null)
+            {
+                //Yes the damaged sprite needs some serious work...
+                sr.sprite = damagedSprite;
+            }
+
             hitSound.Play();
             return false;
         }

@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float xMin = -15;
     private float xMax = 15;
-    private float yMin = -5;
-    private float yMax = 5;
+    private float yMin = -8;
+    private float yMax = 8;
 
     private Player p;
 
