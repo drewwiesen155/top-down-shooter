@@ -16,8 +16,9 @@ public class Enemy : MonoBehaviour
     public bool isDead = false;
 
     [Header("Enemy visuals")]
-    private SpriteRenderer sr;
-    public Sprite damagedSprite;
+    //private SpriteRenderer sr;
+    //public Sprite damagedSprite;  Now done in animation
+    public bool hasDmgedSprite;
     public Animator anim;
 
 
@@ -25,7 +26,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHp = maxHp;
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        //sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -59,10 +60,10 @@ public class Enemy : MonoBehaviour
         else
         {
 
-            if (currentHp <= (maxHp / 2) && damagedSprite != null)
+            if (currentHp <= (maxHp / 2) && hasDmgedSprite)
             {
                 //Yes the damaged sprite needs some serious work...
-                sr.sprite = damagedSprite;
+                anim.SetBool("isDmged", true);
             }
 
             hitSound.Play();
