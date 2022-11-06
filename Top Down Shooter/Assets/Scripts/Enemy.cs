@@ -6,16 +6,28 @@ public class Enemy : MonoBehaviour
 {
     public AudioSource hitSound;
     public AudioSource deathSound;
+    public BoxCollider2D hitbox;
 
+
+    [Header("Enemy Stats")]
     public int maxHp = 3;
     private int currentHp;
-    bool isDead = false;
+    [HideInInspector]
+    public bool isDead = false;
 
+    [Header("Enemy visuals")]
+    private SpriteRenderer sr;
+    public Sprite damagedSprite;
+    public Animator anim;
+
+    public ScoreManager scoreManager;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHp = maxHp;
+        sr = gameObject.GetComponent<SpriteRenderer>();
+        scoreManager = ScoreManager.FindObjectOfType<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -30,10 +42,8 @@ public class Enemy : MonoBehaviour
         if (collider.gameObject.tag == "Bullet")
         {
             isDead = DealDamage();
-            if (isDead)
-            {
-                Destroy(gameObject, .15f); //wait to allow sound to play
-            }
+            
+            
         }
     }
 
@@ -45,13 +55,33 @@ public class Enemy : MonoBehaviour
         if (currentHp <= 0)
         {
             //deathSound.Play();    eventually
-            hitSound.Play();
+            Die();
             return true;
+
+           
         }
         else
         {
+
+            if (currentHp <= (maxHp / 2) && damagedSprite != null)
+            {
+                //Yes the damaged sprite needs some serious work...
+                sr.sprite = damagedSprite;
+            }
+
             hitSound.Play();
             return false;
         }
+    }
+
+    private void Die()
+    {
+        scoreManager.AddScore(1, 1);//score stuff
+
+        hitSound.Play();
+        hitbox.enabled = false;
+        anim.SetBool("isDead", true);
+        Destroy(gameObject, .75f); //wait to allow sound to play
+
     }
 }
