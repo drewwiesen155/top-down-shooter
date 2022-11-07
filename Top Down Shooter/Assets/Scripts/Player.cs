@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 //using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     private int currentHp;
     public bool isDead = false;     //public so movement can be turned off in PlayerMovement script
 
+    public Weapon currentWeapon;
+
     //IFrame Stuff
     public float InvulSeconds = 1.0f; //time of invulnrability.
     float timeInvul = 0f;
@@ -28,11 +31,13 @@ public class Player : MonoBehaviour
     public HealthBar hpBar;
     public GameObject gameOverScreen;
     public Text wavesSurvivedText;
+    public Text totalScore;
 
     [Header("Misc")]
     public WaveManager waveManager;
     public AudioSource bgMusic;
     public AudioSource deathMusic;
+    public ScoreManager scoreManager;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +46,7 @@ public class Player : MonoBehaviour
         hpBar.SetMaxHealth(maxHp);
         gameOverScreen.SetActive(false);
         deathMusic.Stop();
+        currentWeapon = gameOverScreen.GetComponent<Weapon>();
     }
 
     // Update is called once per frame
@@ -137,13 +143,16 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         gameOverScreen.SetActive(true);
-        int wavesSurvived = waveManager.wave - 1;
 
+        int wavesSurvived = waveManager.wave - 1;
+        scoreManager = ScoreManager.FindObjectOfType<ScoreManager>();
         //Grammer corner case... always annoys me
-        if(wavesSurvived == 1)
+        if (wavesSurvived == 1)
             wavesSurvivedText.text = ("You Survived 1 Wave.");
         else
             wavesSurvivedText.text = ("You Survived " + wavesSurvived + " Waves.");
+
+        totalScore.text = ("Your total score was " + scoreManager.totalScore);
 
         bgMusic.Stop();
         deathMusic.Play();
