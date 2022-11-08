@@ -19,6 +19,10 @@ public class Weapon : MonoBehaviour
     public int numberOfPellets = 1;
     public int PelletSpread = 0;
 
+    private PlayerMovement playerMovement;
+    private Shoot shoot;
+
+
 
     //weapon types - shotgun, sniper, assault rifle, revolver, light machine gun
     //shotgun = low damage per pellet, but a lot of pellets
@@ -40,7 +44,11 @@ public class Weapon : MonoBehaviour
     //Weapon will hold ROF score, move, pen, pellets
 
 
-
+    public void UpdateWeapon()
+    {
+        //here I should be able to change damage/bulletspeed/ROF/score multiplier/movement multiplier
+        playerMovement.moveSpeed = 5 * movementMultiplier;
+    }
 
 
 

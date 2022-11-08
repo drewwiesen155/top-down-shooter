@@ -17,6 +17,7 @@ public class Shop : MonoBehaviour
     }
 
     public ScoreManager scoreManager;
+    public Player player;
 
     //takes score, changes weapon, then goes into update shop
     //this is called by the button in the shop
@@ -25,9 +26,16 @@ public class Shop : MonoBehaviour
     //pass in scoreManager?
     public void Buy(Weapon weapon)
     {
+        
+        
         scoreManager = ScoreManager.FindObjectOfType<ScoreManager>();
         scoreManager.currentScore -= weapon.scoreCost;
         scoreManager.UpdateScore();
+
+        player = Player.FindObjectOfType<Player>();
+        player.currentWeapon = weapon;
+        weapon.UpdateWeapon();
+        
 
 
     }

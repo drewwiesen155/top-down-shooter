@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     public Animator anim;
 
     public ScoreManager scoreManager;
+    public Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
         currentHp = maxHp;
         sr = gameObject.GetComponent<SpriteRenderer>();
         scoreManager = ScoreManager.FindObjectOfType<ScoreManager>();
+        player = Player.FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class Enemy : MonoBehaviour
     //Deals damage to enemy. Returns true if enemy dies.
     private bool DealDamage()
     {
-        currentHp--;
+        currentHp -= player.currentWeapon.weaponDamage;
 
         if (currentHp <= 0)
         {

@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     [Header("UI")]
     public HealthBar hpBar;
     public GameObject gameOverScreen;
+    public GameObject shopScreen;
     public Text wavesSurvivedText;
     public Text totalScore;
 
@@ -45,8 +46,9 @@ public class Player : MonoBehaviour
         currentHp = maxHp;
         hpBar.SetMaxHealth(maxHp);
         gameOverScreen.SetActive(false);
+        shopScreen.SetActive(false);
         deathMusic.Stop();
-        currentWeapon = gameOverScreen.GetComponent<Weapon>();
+        //currentWeapon = gameOverScreen.GetComponent<Weapon>();
     }
 
     // Update is called once per frame
@@ -82,6 +84,25 @@ public class Player : MonoBehaviour
                 srOff = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && shopScreen.active == false)//if escape is pressed, open shop
+        {
+            shopScreen.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && shopScreen.active == true)
+        {
+            shopScreen.SetActive(false);
+        }
+
+
+
+        /*
+        if ()//close shop when esc is pressed again
+        {
+            shopScreen.SetActive(false);
+        }
+        */
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
