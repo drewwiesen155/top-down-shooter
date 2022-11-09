@@ -30,15 +30,19 @@ public class Player : MonoBehaviour
     [Header("UI")]
     public HealthBar hpBar;
     public GameObject gameOverScreen;
+
     public GameObject shopScreen;
     public Text wavesSurvivedText;
     public Text totalScore;
+
 
     [Header("Misc")]
     public WaveManager waveManager;
     public AudioSource bgMusic;
     public AudioSource deathMusic;
+
     public ScoreManager scoreManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,9 +50,11 @@ public class Player : MonoBehaviour
         currentHp = maxHp;
         hpBar.SetMaxHealth(maxHp);
         gameOverScreen.SetActive(false);
+
         shopScreen.SetActive(false);
         deathMusic.Stop();
         //currentWeapon = gameOverScreen.GetComponent<Weapon>();
+
     }
 
     // Update is called once per frame
@@ -165,15 +171,19 @@ public class Player : MonoBehaviour
 
         gameOverScreen.SetActive(true);
 
+
         int wavesSurvived = waveManager.wave - 1;
         scoreManager = ScoreManager.FindObjectOfType<ScoreManager>();
         //Grammer corner case... always annoys me
         if (wavesSurvived == 1)
+
             wavesSurvivedText.text = ("You Survived 1 Wave.");
         else
             wavesSurvivedText.text = ("You Survived " + wavesSurvived + " Waves.");
 
+
         totalScore.text = ("Your total score was " + scoreManager.totalScore);
+
 
         bgMusic.Stop();
         deathMusic.Play();

@@ -10,14 +10,20 @@ public class WaveManager : MonoBehaviour
     public GameObject wormPrefab;
     public GameObject tankOozePrefab;
 
+    public GameObject skullPrefab;
+
     [Header("Enemy Spawn Rates")]
     public float tankOozeSpawnChance;
+    public float skullSpawnChance;
 
     [Header("Enemy Spawn Wave Thresholds")]
     public int tankOozeFirstWave;
+    public int skullFirstWave;
 
     //Spawn Flags
-    private bool tankOozeSpawn;
+    private bool tankOozeSpawn = false;
+    private bool skullSpawn = false;
+
 
     [Header("Wave Data")]
     public Transform enemies;
@@ -52,6 +58,9 @@ public class WaveManager : MonoBehaviour
     {
         if (waveOver)
         {
+
+            Debug.Log("Starting Wave " + wave);
+
             SetSpawnFlags();
             StartCoroutine(SpawnWave());
         }
@@ -78,6 +87,7 @@ public class WaveManager : MonoBehaviour
 
             //Every 5 waves is a wave of just worms
             if(wave % 5 == 0)
+
             {
                 for(int j = 0; j < enemiesToSpawn / 3; j++)
                 {
@@ -98,8 +108,32 @@ public class WaveManager : MonoBehaviour
                 {
                     Debug.Log("TANK SPAWNING!");
                     spawnPoints[spawnPointIndex].SpawnEnemy(tankOozePrefab);
+
                 }
+
+                break;
+            }
+            else
+            {
+                //chance of spawning tank ooze
+                spawnChance = Random.Range(0.0f, 1.0f);
+                
+                if(tankOozeSpawn && spawnChance <= tankOozeSpawnChance)
+                {
+
+                    //reset rng spawn chance
+                    spawnChance = Random.Range(0.0f, 1.0f);
+                }
+
+                //chance of spawning skull
+                if (skullSpawn && spawnChance <= skullSpawnChance)
+                {
                     
+                    Debug.Log("SKULL SPAWNING!");
+                    spawnPoints[spawnPointIndex].SpawnEnemy(skullPrefab);
+                }
+                //make sure last else defaults to basic ooze
+
                 else
                     spawnPoints[spawnPointIndex].SpawnEnemy(oozePrefab);
 
@@ -115,6 +149,11 @@ public class WaveManager : MonoBehaviour
     {
         if (!tankOozeSpawn && wave >= tankOozeFirstWave)
             tankOozeSpawn = true;
+
+
+        if (!skullSpawn && wave >= skullFirstWave)
+            skullSpawn = true;
+
     }
 
     private bool CheckWaveStatus()
@@ -130,7 +169,6 @@ public class WaveManager : MonoBehaviour
             //Wave is over
             Debug.Log("Wave " + wave + " is over!");
             wave++;
-            Debug.Log("Starting Wave " + wave);
 
             //Since this script is on each spawner, only one will have a reference to the UI to update the wave counter
             if (waveCounter != null)

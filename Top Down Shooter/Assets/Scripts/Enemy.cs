@@ -12,13 +12,18 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Stats")]
     public int maxHp = 3;
     private int currentHp;
+
     public int killReward;
+
     [HideInInspector]
     public bool isDead = false;
 
     [Header("Enemy visuals")]
-    private SpriteRenderer sr;
-    public Sprite damagedSprite;
+
+    //private SpriteRenderer sr;
+    //public Sprite damagedSprite;  Now done in animation
+    public bool hasDmgedSprite;
+
     public Animator anim;
 
     public ScoreManager scoreManager;
@@ -28,9 +33,11 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHp = maxHp;
+
         sr = gameObject.GetComponent<SpriteRenderer>();
         scoreManager = ScoreManager.FindObjectOfType<ScoreManager>();
         player = Player.FindObjectOfType<Player>();
+
     }
 
     // Update is called once per frame
@@ -45,8 +52,7 @@ public class Enemy : MonoBehaviour
         if (collider.gameObject.tag == "Bullet")
         {
             isDead = DealDamage();
-            
-            
+
         }
     }
 
@@ -66,10 +72,12 @@ public class Enemy : MonoBehaviour
         else
         {
 
-            if (currentHp <= (maxHp / 2) && damagedSprite != null)
+
+            if (currentHp <= (maxHp / 2) && hasDmgedSprite)
             {
                 //Yes the damaged sprite needs some serious work...
-                sr.sprite = damagedSprite;
+                anim.SetBool("isDmged", true);
+
             }
 
             hitSound.Play();
@@ -79,6 +87,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+
         scoreManager.AddScore(killReward, player.currentWeapon.scoreMultiplier);//score stuff
 
         hitSound.Play();
@@ -95,6 +104,7 @@ public class Enemy : MonoBehaviour
         }
         
         //Destroy(gameObject, .75f); //wait to allow sound to play
+
 
     }
 }
