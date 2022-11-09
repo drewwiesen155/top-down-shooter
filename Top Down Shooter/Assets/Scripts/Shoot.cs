@@ -8,8 +8,8 @@ public class Shoot : MonoBehaviour
     public GameObject bulletPrefab;
     public AudioSource shootSound;
     public float bulletSpeed = 20f;
-
-    private float fireRate = .25f;
+    public float fireRate = .25f;
+   
     private float fireTimer = 0f;
 
     private Player p;
@@ -25,6 +25,7 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         //Input system is kinda weird. This will detect mouse left clicks
+        fireRate = p.currentWeapon.weaponRateOfFire;
         if (Input.GetButton("Fire1") && fireTimer >= fireRate && !p.isDead)
         {
             //Fire Bullet

@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Stats")]
     public int maxHp = 3;
     private int currentHp;
+    public int killReward;
     [HideInInspector]
     public bool isDead = false;
 
@@ -78,12 +79,22 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        scoreManager.AddScore(1, 1);//score stuff
+        scoreManager.AddScore(killReward, player.currentWeapon.scoreMultiplier);//score stuff
 
         hitSound.Play();
         hitbox.enabled = false;
-        anim.SetBool("isDead", true);
-        Destroy(gameObject, .75f); //wait to allow sound to play
+        if(anim != null)
+        {
+            anim.SetBool("isDead", true);
+            Destroy(gameObject, .75f);
+        }
+        else
+        {
+            
+            Destroy(gameObject, .75f);
+        }
+        
+        //Destroy(gameObject, .75f); //wait to allow sound to play
 
     }
 }

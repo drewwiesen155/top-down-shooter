@@ -47,7 +47,7 @@ MonoBehaviour:
   weaponDamage: 1
   weaponRateOfFire: 0.25
   scoreMultiplier: 1
-  movementMultiplier: 1
+  movementMultiplier: 5
   scoreCost: 0
   bulletSpeed: 20
   canPenetrate: 0

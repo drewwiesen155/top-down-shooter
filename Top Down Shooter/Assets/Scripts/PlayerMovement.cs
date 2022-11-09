@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!p.isDead)
         {
+            moveSpeed = p.currentWeapon.movementMultiplier;
             dirX = Input.GetAxisRaw("Horizontal");
             dirY = Input.GetAxisRaw("Vertical");
 

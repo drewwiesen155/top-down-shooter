@@ -8,9 +8,12 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
 
-    public int totalScore;//overall score, never gets subtracted from
-    public int currentScore;//current score, is the currency to shop with
-    public int scoreMultiplier;
+    public float totalScore;//overall score, never gets subtracted from
+    public float currentScore;//current score, is the currency to shop with
+
+    
+
+    public float scoreMultiplier;
 
     public Text scoreBoard;
 
@@ -21,10 +24,13 @@ public class ScoreManager : MonoBehaviour
         scoreBoard.text = ("Score: 0");
     }
 
-    public void AddScore(int enemyCost, int multiplier)//this goes into enemy dying
+    public void AddScore(int enemyReward, float multiplier)//this goes into enemy dying
     {
-        currentScore += enemyCost * multiplier;
-        totalScore += enemyCost * multiplier;
+        currentScore += enemyReward * multiplier;
+        totalScore += enemyReward * multiplier;
+        currentScore = Mathf.Abs(currentScore);
+        totalScore = Mathf.Abs(totalScore);
+
         UpdateScore();
     }
 

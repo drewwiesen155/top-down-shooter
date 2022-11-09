@@ -24,6 +24,22 @@ public class Shop : MonoBehaviour
     //pass in the weapon being bought - which also contains the cost of it
     //how do I change currentScore?
     //pass in scoreManager?
+
+    /*damage works
+     * I think firerate works
+     * move speed is broken?
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+
+
     public void Buy(Weapon weapon)
     {
         
@@ -34,7 +50,7 @@ public class Shop : MonoBehaviour
 
         player = Player.FindObjectOfType<Player>();
         player.currentWeapon = weapon;
-        weapon.UpdateWeapon();
+        
         
 
 

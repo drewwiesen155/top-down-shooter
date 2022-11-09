@@ -7,15 +7,19 @@ public class Weapon : MonoBehaviour
     [Header("Weapon Stats")]
     public int weaponDamage = 1;
     public float weaponRateOfFire = .25f;
+    public float bulletSpeed = 20.0f;
 
     public float scoreMultiplier = 1.0f;
     public float movementMultiplier = 1.0f;
 
     public int scoreCost = 0;
-    public float bulletSpeed = 20.0f;
+    public bool weaponOwned = false;//Will be used for shopGUI
+    public bool weaponEquipped = false;//Will be used for shopGUI
 
-
+    //Sniper only stats - no implemented yet
     public bool canPenetrate = false;
+
+    //Shotgun only stats - not implemented yet
     public int numberOfPellets = 1;
     public int PelletSpread = 0;
 
@@ -44,10 +48,13 @@ public class Weapon : MonoBehaviour
     //Weapon will hold ROF score, move, pen, pellets
 
 
-    public void UpdateWeapon()
+    public void UpdateWeapon()//I DON'T THINK THIS DOES ANYTHING
     {
+        
         //here I should be able to change damage/bulletspeed/ROF/score multiplier/movement multiplier
         playerMovement.moveSpeed = 5 * movementMultiplier;
+        shoot.bulletSpeed = bulletSpeed;
+        shoot.fireRate = weaponRateOfFire;
     }
 
 

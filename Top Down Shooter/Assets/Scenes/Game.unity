@@ -15073,6 +15073,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3914015702432531058, guid: e7b6cbcf292812a4fbf480e330131035, type: 3}
   shootSound: {fileID: 2066987365}
   bulletSpeed: 10
+  fireRate: 0.25
 --- !u!50 &2066987362
 Rigidbody2D:
   serializedVersion: 4
@@ -15452,10 +15453,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamage: 1
   weaponRateOfFire: 0.25
+  bulletSpeed: 20
   scoreMultiplier: 1
   movementMultiplier: 1
   scoreCost: 0
-  bulletSpeed: 20
+  weaponOwned: 0
+  weaponEquipped: 0
   canPenetrate: 0
   numberOfPellets: 1
   PelletSpread: 0
