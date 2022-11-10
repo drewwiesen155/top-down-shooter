@@ -28,6 +28,10 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         //Input system is kinda weird. This will detect mouse left clicks
+<<<<<<< Updated upstream
+=======
+        fireRate = p.currentWeapon.weaponRateOfFire;
+>>>>>>> Stashed changes
         if (Input.GetButton("Fire1") && fireTimer >= fireRate && !p.isDead)
         {
             //Fire Bullet

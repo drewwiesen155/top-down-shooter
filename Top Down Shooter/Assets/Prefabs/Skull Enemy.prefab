@@ -188,9 +188,12 @@ MonoBehaviour:
   deathSound: {fileID: 5630394007257947368}
   hitbox: {fileID: 1815119701253077262}
   maxHp: 1
+  killReward: 50
   isDead: 0
-  damagedSprite: {fileID: 0}
+  hasDmgedSprite: 0
   anim: {fileID: 5041429301310177140}
+  scoreManager: {fileID: 0}
+  player: {fileID: 0}
 --- !u!82 &3545054432781245950
 AudioSource:
   m_ObjectHideFlags: 0

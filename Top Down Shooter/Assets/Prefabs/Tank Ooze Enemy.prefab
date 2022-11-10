@@ -168,9 +168,18 @@ MonoBehaviour:
   deathSound: {fileID: 5630394007257947368}
   hitbox: {fileID: 1815119701253077262}
   maxHp: 20
+<<<<<<< Updated upstream
   isDead: 0
   hasDmgedSprite: 1
   anim: {fileID: -7451464459891474837}
+=======
+  killReward: 50
+  isDead: 0
+  hasDmgedSprite: 1
+  anim: {fileID: -7451464459891474837}
+  scoreManager: {fileID: 0}
+  player: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!82 &3545054432781245950
 AudioSource:
   m_ObjectHideFlags: 0

@@ -12,6 +12,10 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Stats")]
     public int maxHp = 3;
     private int currentHp;
+<<<<<<< Updated upstream
+=======
+    public int killReward;
+>>>>>>> Stashed changes
     [HideInInspector]
     public bool isDead = false;
 
@@ -27,6 +31,11 @@ public class Enemy : MonoBehaviour
     {
         currentHp = maxHp;
         //sr = gameObject.GetComponent<SpriteRenderer>();
+<<<<<<< Updated upstream
+=======
+        scoreManager = ScoreManager.FindObjectOfType<ScoreManager>();
+        player = Player.FindObjectOfType<Player>();
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -73,6 +82,10 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+<<<<<<< Updated upstream
+=======
+        scoreManager.AddScore(killReward, player.currentWeapon.scoreMultiplier);//score stuff
+>>>>>>> Stashed changes
         hitSound.Play();
         hitbox.enabled = false;
         anim.SetBool("isDead", true);

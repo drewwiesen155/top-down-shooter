@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public AudioSource damagedSound;
     public Rigidbody2D rb;
     public SpriteRenderer sr;
-    
+
 
     public int maxHp = 5;
     private int currentHp;
@@ -27,12 +27,22 @@ public class Player : MonoBehaviour
     [Header("UI")]
     public HealthBar hpBar;
     public GameObject gameOverScreen;
+<<<<<<< Updated upstream
     public Text wavesSurvivedText;
+=======
+    public GameObject shopScreen;
+    public Text wavesSurvivedText;
+    public Text totalScore;
+>>>>>>> Stashed changes
 
     [Header("Misc")]
     public WaveManager waveManager;
     public AudioSource bgMusic;
     public AudioSource deathMusic;
+<<<<<<< Updated upstream
+=======
+    public ScoreManager scoreManager;
+>>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start()
@@ -40,18 +50,24 @@ public class Player : MonoBehaviour
         currentHp = maxHp;
         hpBar.SetMaxHealth(maxHp);
         gameOverScreen.SetActive(false);
+<<<<<<< Updated upstream
         deathMusic.Stop();
+=======
+        shopScreen.SetActive(false);
+        deathMusic.Stop();
+        //currentWeapon = gameOverScreen.GetComponent<Weapon>();
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(invul && timeInvul <InvulSeconds)
+        if (invul && timeInvul < InvulSeconds)
         {
             timeInvul += Time.deltaTime;
 
             //flash Sprite
-            if(srOff)
+            if (srOff)
             {
                 sr.enabled = true;
                 srOff = false;
@@ -62,7 +78,7 @@ public class Player : MonoBehaviour
                 srOff = true;
             }
         }
-        else if(invul && timeInvul >= InvulSeconds && !isDead)
+        else if (invul && timeInvul >= InvulSeconds && !isDead)
         {
             //Turn off IFrames
             Debug.Log("ENDING IFRAMES!");
@@ -70,7 +86,7 @@ public class Player : MonoBehaviour
             timeInvul = 0f;
 
             //Make sure sprite is rendered
-            if(srOff)
+            if (srOff)
             {
                 sr.enabled = true;
                 srOff = false;
@@ -96,7 +112,7 @@ public class Player : MonoBehaviour
     //Deals damage to player. Returns true if player dies.
     private bool DealDamage()
     {
-        if(!invul)
+        if (!invul)
         {
             currentHp--;
             Debug.Log("Player Hit! HP = " + currentHp);
@@ -107,8 +123,8 @@ public class Player : MonoBehaviour
                 if (!isDead)
                 {
                     deathSound.Play();
-                    
-                    
+
+
                 }
 
                 return true;
@@ -137,14 +153,27 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         gameOverScreen.SetActive(true);
+<<<<<<< Updated upstream
         int wavesSurvived = waveManager.wave - 1;
 
         //Grammer corner case... always annoys me
         if(wavesSurvived == 1)
+=======
+
+        int wavesSurvived = waveManager.wave - 1;
+        scoreManager = ScoreManager.FindObjectOfType<ScoreManager>();
+        //Grammer corner case... always annoys me
+        if (wavesSurvived == 1)
+>>>>>>> Stashed changes
             wavesSurvivedText.text = ("You Survived 1 Wave.");
         else
             wavesSurvivedText.text = ("You Survived " + wavesSurvived + " Waves.");
 
+<<<<<<< Updated upstream
+=======
+        //totalScore.text = ("Your total score was " + scoreManager.totalScore);Too lazy for right now
+
+>>>>>>> Stashed changes
         bgMusic.Stop();
         deathMusic.Play();
     }

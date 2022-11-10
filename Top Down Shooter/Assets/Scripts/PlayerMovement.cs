@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!p.isDead)
+        if (!p.isDead)
         {
             dirX = Input.GetAxisRaw("Horizontal");
             dirY = Input.GetAxisRaw("Vertical");
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f; //needs offset for some reason
             rb.rotation = angle;
 
-            cam.transform.position = new Vector3 (transform.position.x, transform.position.y, -10); //-10 is the default value for 2D camera
+            cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10); //-10 is the default value for 2D camera
         }
     }
 }
